@@ -1,0 +1,28 @@
+name: Python Application CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Check out the repository
+      - uses: actions/checkout@v2
+
+      # Set up Python 3.8
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      # Install dependencies from requirements.txt
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Run tests with pytest
+      - name: Run tests
+        run: pytest tests/
